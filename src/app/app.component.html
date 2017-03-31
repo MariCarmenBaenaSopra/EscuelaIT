@@ -1,3 +1,20 @@
 <h1>
   {{title}}
 </h1>
+Este es el componente root
+
+
+<p> {{ nombre }} trabaja para {{ empresa }} </p>
+<p>Radio:<input 
+  type="number" 
+  [ngModel]="radio"
+  (ngModelChange)="calcularCircunferencia($event)">
+</p>
+
+<input type="button" (click)="mostrar=true" value="Click Me"/>
+<p *ngIf="mostrar">Hola Mundo</p>
+
+<p>La circunferencia para un radio de {{ radio }} es {{ circunferencia }} </p>
+
+<app-movimientos> </app-movimientos>
+<app-clientes> </app-clientes>

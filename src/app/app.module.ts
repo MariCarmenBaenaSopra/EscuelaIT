@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { MovimientosModule } from './movimientos/movimientos.module';
+import { ClientesModule } from './clientes/clientes.module';
 
 @NgModule({
   declarations: [
@@ -12,9 +14,12 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MovimientosModule,
+    ClientesModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [],  /**Injection of common services for the application */
+  bootstrap: [AppComponent] /**root component for boot */
 })
+
 export class AppModule { }

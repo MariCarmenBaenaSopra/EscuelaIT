@@ -1,0 +1,61 @@
+<button (click)="mostrar=true"> Mostrar Formulario </button>
+<div *ngIf="mostrar">
+  <div>
+    <label for=""> Formulario </label>
+    <input type="text" ngModel="Alta de un Nuevo Movimiento">
+  </div>
+  <div>
+    <label for=""> Fecha </label>
+    <!-- Asignacion de un valor a un elemento -->
+    <input type="text" [ngModel]="movimiento.fecha">
+  </div>
+  <div>
+    <label for=""> Empresa </label>
+    <!-- propiedad de solo lectura, y evento para escritura -->
+    <input type="text" [ngModel]="movimiento.empresa">
+  </div>
+  <div>
+    <label for=""> Importe </label>
+    <!-- banana in a box, lectura y escritura -->
+    <input type="number" [ngModel]="movimiento.importe" (ngModelChange)="cambiarImporte($event)">
+    <p> Importe: {{ importe }} </p>
+  </div>
+  <div>
+    <label for=""> Tipo </label>
+    <div *ngFor="let tipo of tipos">
+      <!-- for es un atributo, requiere una sintaxis especial -->
+      <label [attr.for]="tipo.id">
+        <!-- 
+          [id]
+           es una propiedad se usa []
+           name define el grupo de opciones
+           [(ngModel)] el campo donde se escribira el valor seleccionado
+           [value]= de donde toma valor esta opciones(ngModelChange) que ocurre cuando se cambia
+        -->
+        <input
+          [id]="tipo.id"
+          name="tiposGroup"
+          [(ngModel)]="movimiento.tipo"
+          [value]="tipo.id"
+          (ngModelChange)="cambiarTipo()"
+          type="radio">
+          {{ tipo.text }}
+      </label>
+    </div>
+  </div>
+  <div>
+    <label for=""> Categoría </label>
+    <!-- las opciones se cargan con el *ngFor -->
+    <select name="categoria" [(ngModel)]="movimiento.categoria">
+      <option
+        *ngFor="let categoria of categorias"
+        [value]="categoria.id">
+        {{ categoria.text }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <button (click)="guardarMovimiento()"> Guardar </button>
+  </div>
+</div>
+<lista></lista>
