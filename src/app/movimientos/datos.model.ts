@@ -7,17 +7,23 @@ export interface Movimiento {
     categoria: number;
 }
 
+interface OnInit {
+  ngOnInit(): void;
+}
 
-
-export class Animal implements PuedeComer {
+export class Animal implements PuedeComer, OnInit {
   nombre: string;
   comer(){
     return true;
   }
+
+  ngOnInit(){
+
+  }
 }
 let animal = new Animal();
 animal.nombre = 'Donald';
-
+animal.ngOnInit();
 
 /**HERENCIA: */
   export class Perro extends Animal {
