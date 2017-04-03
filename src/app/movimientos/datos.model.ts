@@ -1,3 +1,14 @@
+export class Movimiento{
+  /**Propiedades: */
+    importe: number;
+    fecha: Date;
+    empresa: string;
+    tipo: number;
+    categoria: number;
+}
+
+
+
 export class Animal implements PuedeComer {
   nombre: string;
   comer(){
