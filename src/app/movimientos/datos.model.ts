@@ -1,4 +1,4 @@
-export class Movimiento{
+export interface Movimiento {
   /**Propiedades: */
     importe: number;
     fecha: Date;

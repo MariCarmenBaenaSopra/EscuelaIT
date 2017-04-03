@@ -11,18 +11,19 @@ export class ServicioDatosService {
   constructor() {
   }
 
-  crearInjectable() {
-    return{
-      importe: 0,
-      fecha: new Date(Date.now())
-    }
-  }
-
-  crearMovimiento(){
-    let movimiento = new Movimiento();
+   crearMovimiento(): Movimiento {
+    /*let movimiento = new Movimiento();
     movimiento.fecha = new Date(Date.now());
-    movimiento.empresa = 'Escuela It';
+    movimiento.empresa = 'Escuela It';*/
 
+   /**Objeto movimiento: */
+    let movimiento: Movimiento = {
+      importe: 0,
+      fecha: new Date(Date.now()),
+      empresa: '',
+      tipo: 0,
+      categoria:0
+    }
     return movimiento;
   }
 }

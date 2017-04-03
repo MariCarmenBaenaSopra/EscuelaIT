@@ -1,4 +1,5 @@
 import { ServicioDatosService } from './../servicio-datos.service';
+import { Movimiento } from './../datos.model';
 
 import { Component, OnInit } from '@angular/core';
 /**Para usar los formularios, en "movimientos.module.ts hay que añadir a "imports": FrmsModule" */
@@ -29,11 +30,12 @@ export class NuevoComponenteComponent implements OnInit {
   movimiento: any = {};   //para la fecha
 
   /*INJECCION DE SERVICIO*/
-    public injectable: any;
+    public injectable: Movimiento;
     constructor(private datosService: ServicioDatosService) { }
 
   /**Arranque del componente */
     ngOnInit() {
+      
       this.movimiento = {
         fecha: new Date(Date.now()),
         empresa: 'Sopra Steria',
@@ -44,7 +46,7 @@ export class NuevoComponenteComponent implements OnInit {
       this.cambiarTipo();
 
       /* Injeccion: */
-        this.injectable = this.datosService.crearInjectable();
+        this.injectable = this.datosService.crearMovimiento();
         this.injectable.empresa = this.datosService.empresa;
     }
 
