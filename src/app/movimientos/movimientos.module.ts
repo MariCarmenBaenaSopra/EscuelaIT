@@ -26,7 +26,7 @@ import { ServicioDatosService } from './servicio-datos.service';
   ],
   providers: [
     ServicioDatosService
-  ]  
+  ]
 })
 
 export class MovimientosModule { }

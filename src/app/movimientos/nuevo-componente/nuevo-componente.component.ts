@@ -47,18 +47,18 @@ export class NuevoComponenteComponent implements OnInit {
         this.injectable = this.datosService.crearInjectable();
         this.injectable.empresa = this.datosService.empresa;
     }
-  
+
     cambiarImporte = function (valorEvento) {
       this.importe = valorEvento;
     }
-  
+
     cambiarTipo() {
       this.categorias = this.categoriasTipos.filter(c => c.type === this.movimiento.tipo)
       /*this.categorias = this.categoriasTipos.filter(function (c) {
         return c.type === this.movimiento.tipo
       });*/
     }
-  
+
     guardarMovimiento() {
       console.log("Guardando.... " + this.movimiento);
     }
