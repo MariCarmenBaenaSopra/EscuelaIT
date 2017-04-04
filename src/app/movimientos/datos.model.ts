@@ -1,40 +1,34 @@
-export interface Movimiento {
-  /**Propiedades: */
-    importe: number;
-    fecha: Date;
-    empresa: string;
-    tipo: number;
-    categoria: number;
+/** 
+ * declaración de tipos para ayuda al programador
+ * los datos suelen ser intanciados en el servidor
+ * en esos casos basta declararlos como interfaces
+ * */
+
+export interface MaestroModel {
+  id: number;
+  text: string;
+}
+
+export interface MaestroTipoModel extends MaestroModel {
+  type: number;
+}
+
+export interface MovimientoModel {
+  importe: number;
+  fecha: Date;
+  tipo: number;
+  categoria: number;
 }
 
 interface OnInit {
   ngOnInit(): void;
 }
 
-export class Animal implements PuedeComer, OnInit {
-  nombre: string;
-  comer(){
-    return true;
-  }
-
-  ngOnInit(){
-
+export class Movimiento implements MovimientoModel {
+  constructor(
+    public fecha: Date,
+    public importe: number,
+    public tipo: number,
+    public categoria: number){
   }
 }
-let animal = new Animal();
-animal.nombre = 'Donald';
-animal.ngOnInit();
-
-/**HERENCIA: */
-  export class Perro extends Animal {
-    raza: string;
-  }
-
-  let perro = new Perro();
-  perro.nombre = 'Goofy';
-  perro.raza = 'Dogo';
-
-/**INTERFAZ: */
-  interface PuedeComer {
-    comer(): boolean;
-  }

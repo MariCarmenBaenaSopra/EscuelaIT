@@ -1,4 +1,13 @@
 <br><h2> MODULO: MOVIMIENTOS </h2>
-
-<nuevo-componente></nuevo-componente>
-<lista></lista>
+<!--[popiedades]="para enviar información a componentes hijos"-->
+<!--(eventos)="para recibir información de componentes hijos"-->
+<nuevo-componente
+  [tipos]= "tiposEnElContenedor"
+  [categorias]="categorias"
+  [movimiento]="movimiento"
+  (guardar)="guardarMovimiento()"
+  (usuarioCambiarTipo)="cambiarTipoDelMovimiento()">
+</nuevo-componente>
+<lista 
+  [movimientos]="movimientos">
+</lista>

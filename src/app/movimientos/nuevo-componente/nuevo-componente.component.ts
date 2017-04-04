@@ -1,7 +1,7 @@
 import { ServicioDatosService } from './../servicio-datos.service';
-import { Movimiento } from './../datos.model';
+import { Movimiento, MaestroModel, MaestroTipoModel } from './../datos.model';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 /**Para usar los formularios, en "movimientos.module.ts hay que añadir a "imports": FrmsModule" */
 
 @Component({
@@ -11,57 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class NuevoComponenteComponent implements OnInit {
-  tipos: any[] = [
-    { id: 1, text: "Ingreso" },
-    { id: 2, text: "Gasto" },
-    { id: 3, text: "Otros" }];
+  /** recibelos datos vía propiedades --> [] */
+    @Input() tipos: MaestroModel[] = [];              /** propiedad para la entrada de tipos de movimiento */
+    @Input() categorias: MaestroTipoModel[] = [];     /** propiedad para entrada de categorias de movimiento */
+    @Input() movimiento: Movimiento;                  /** propiedad para entrada de un movimiento */
 
-  categoriasTipos: any[] = [
-    { id: 1, text: "Nóminas", type: 1 },
-    { id: 2, text: "Ventas", type: 1 },
-    { id: 3, text: "Intereses", type: 1 },
-    { id: 4, text: "Hipoteca", type: 2 },
-    { id: 5, text: "Compras", type: 2 },
-    { id: 6, text: "Domiciliaciones", type: 2 },
-    { id: 7, text: "Impuestos", type: 2 },
-    { id: 8, text: "Otros", type: 3 }];
-  categorias: any[];
+  /** emite eventos de cambio y guardado */
+    /** propiedad para emitir el evento de guardado del movimiento actual */
+      @Output() guardar: EventEmitter <Movimiento> = new EventEmitter<Movimiento>();
+    /** propiedad para emitir el evento de cambio de tipo del movimiento actual */
+      @Output() usuarioCambiarTipo: EventEmitter <number> = new EventEmitter<number>();
 
-  movimiento: any = {};   //para la fecha
+  constructor() { }
 
-  /*INJECCION DE SERVICIO*/
-    public injectable: Movimiento;
-    constructor(private datosService: ServicioDatosService) { }
 
-  /**Arranque del componente */
-    ngOnInit() {
-      
-      this.movimiento = {
-        fecha: new Date(Date.now()),
-        empresa: 'Sopra Steria',
-        importe: 0,
-        tipo: this.tipos[0].id
+  ngOnInit() {  }
+
+  // emisión de eventos para cambios o pedir guardar el movimiento
+    /** cuando el usuario hace click en un radio button de tipo */
+      usuarioCambioRadioButton() {
+        this.usuarioCambiarTipo.emit(this.movimiento.tipo);
       }
 
-      this.cambiarTipo();
-
-      /* Injeccion: */
-        this.injectable = this.datosService.crearMovimiento();
-        this.injectable.empresa = this.datosService.empresa;
-    }
-
-    cambiarImporte = function (valorEvento) {
-      this.importe = valorEvento;
-    }
-
-    cambiarTipo() {
-      this.categorias = this.categoriasTipos.filter(c => c.type === this.movimiento.tipo)
-      /*this.categorias = this.categoriasTipos.filter(function (c) {
-        return c.type === this.movimiento.tipo
-      });*/
-    }
-
-    guardarMovimiento() {
-      console.log("Guardando.... " + this.movimiento);
-    }
+    /** cuando el usuario hace click en el botón de guardado */
+      guardarMovimiento() {
+        this.guardar.emit(this.movimiento);  /**this.guardar. --> viene del @Output" */
+      }
 }
