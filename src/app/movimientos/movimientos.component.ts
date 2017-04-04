@@ -19,12 +19,12 @@ export class MovimientosComponent implements OnInit{
   movimiento: Movimiento;
   movimientos: Movimiento[];
   movimientos$: Observable<Movimiento[]>;
-  
+
 // las dependencias se declaran como parámetros del constructor
   /** Depende del servicio de datos */
     constructor(private datosService: ServicioDatosService) {}
 
-  /** Al arrancar, obtiene datos estáticos y suscripciones a otros vivos */  
+  /** Al arrancar, obtiene datos estáticos y suscripciones a otros vivos */
     ngOnInit() {
       this.tiposEnElContenedor = this.datosService.getTipos();
       this.movimiento = this.datosService.getNuevoMovimiento();
@@ -38,10 +38,11 @@ export class MovimientosComponent implements OnInit{
     cambiarTipoDelMovimiento() {
       this.categorias = this.datosService.getCategoriasPorTipos(this.movimiento.tipo);
       // Cambios en el tipo, crean cambios en la categoría
+        /**Para que se muestren 1 vez cambiaro el radiobutton */
         this.movimiento.categoria = this.datosService.getCategoriaBase(this.movimiento.tipo);
     }
 
-    guardarMovimiento(){
+    guardarMovimiento() {
       this.datosService.postMovimiento(this.movimiento);  //se crea la conexion en el servicio para guardar
     }
 }

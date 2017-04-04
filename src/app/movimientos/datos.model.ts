@@ -14,8 +14,8 @@ export interface MaestroTipoModel extends MaestroModel {
 }
 
 export interface MovimientoModel {
-  importe: number;
   fecha: Date;
+  importe: number;
   tipo: number;
   categoria: number;
 }
